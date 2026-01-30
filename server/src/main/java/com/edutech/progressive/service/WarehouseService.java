@@ -2,14 +2,16 @@ package com.edutech.progressive.service;
 
 import com.edutech.progressive.entity.Warehouse;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public interface WarehouseService {
-    List<Warehouse> getAllWarehouses();
+public interface WarehouseService  {
+    List<Warehouse> getAllWarehouses() throws SQLException;
 
-    int addWarehouse(Warehouse warehouse);
+    int addWarehouse(Warehouse warehouse)  throws SQLException;
+   // List<Warehouse> getWarehousesSortedByName() ;
 
-    List<Warehouse> getWarehousesSortedByCapacity();
+    List<Warehouse> getWarehousesSortedByCapacity()  throws SQLException;
 
     default public void emptyArrayList() {
     }
@@ -18,10 +20,10 @@ public interface WarehouseService {
     default void updateWarehouse(Warehouse warehouse) {
     }
 
-    default void deleteWarehouse(int warehouseId) {
+    default void deleteWarehouse(int warehouseId)  throws SQLException {
     }
 
-    default Warehouse getWarehouseById(int warehouseId) {
+    default Warehouse getWarehouseById(int warehouseId) throws SQLException  {
         return null;
     }
 
@@ -29,4 +31,6 @@ public interface WarehouseService {
     default List<Warehouse> getWarehouseBySupplier(int supplierId) {
         return null;
     }
+
+
 }

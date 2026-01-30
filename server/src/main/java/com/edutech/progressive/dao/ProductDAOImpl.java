@@ -8,7 +8,7 @@ import com.edutech.progressive.entity.Product;
 public class ProductDAOImpl implements ProductDAO {
 
     @Override
-    public int addProduct(Product product) {
+    public int addProduct(Product product)  {
         // TODO Auto-generated method stub
         return -1;
     }

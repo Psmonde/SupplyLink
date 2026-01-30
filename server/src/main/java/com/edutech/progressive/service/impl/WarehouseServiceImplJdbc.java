@@ -13,6 +13,7 @@ public class WarehouseServiceImplJdbc  implements WarehouseDAO, WarehouseService
     public WarehouseServiceImplJdbc (WarehouseDAO warehouseDAO){
         this.warehouseDAO=warehouseDAO;
     }
+   
 
     @Override
     public int addWarehouse(Warehouse warehouse) {
