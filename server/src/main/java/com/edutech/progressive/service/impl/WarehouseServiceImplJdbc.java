@@ -1,66 +1,58 @@
 package com.edutech.progressive.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.edutech.progressive.dao.WarehouseDAO;
 import com.edutech.progressive.entity.Warehouse;
 import com.edutech.progressive.service.WarehouseService;
 
-public class WarehouseServiceImplJdbc  implements WarehouseDAO, WarehouseService  {
+import java.sql.SQLException;
+import java.util.Comparator;
+import java.util.List;
+
+public class WarehouseServiceImplJdbc implements WarehouseService {
+
     private WarehouseDAO warehouseDAO;
 
-    public WarehouseServiceImplJdbc (WarehouseDAO warehouseDAO){
-        this.warehouseDAO=warehouseDAO;
+    public WarehouseServiceImplJdbc(WarehouseDAO warehouseDAO) {
+        this.warehouseDAO = warehouseDAO;
     }
-   
 
     @Override
-    public int addWarehouse(Warehouse warehouse) {
+    public List<Warehouse> getAllWarehouses() throws SQLException {
+        return warehouseDAO.getAllWarehouse();
+    }
+
+    @Override
+    public int addWarehouse(Warehouse warehouse) throws SQLException {
+        int id = warehouseDAO.addWarehouse(warehouse);
+        warehouse.setWarehouseId(id); // REQUIRED
+        return id;
+    }
+
+    @Override
+    public void updateWarehouse(Warehouse warehouse) throws SQLException {
+        warehouseDAO.updateWarehouse(warehouse);
+    }
+
+    @Override
+    public void deleteWarehouse(int warehouseId) throws SQLException {
+        warehouseDAO.deleteWarehouse(warehouseId);
+    }
+
+    @Override
+    public Warehouse getWarehouseById(int warehouseId) throws SQLException {
+        return warehouseDAO.getWarehouseById(warehouseId);
+    }
+
+    @Override
+    public List<Warehouse> getWarehousesSortedByCapacity() throws SQLException {
+        List<Warehouse> warehouses = warehouseDAO.getAllWarehouse();
+        warehouses.sort(Comparator.comparingInt(Warehouse::getCapacity)); // ASCENDING
+        return warehouses;
+    }
+
+    @Override
+    public List<Warehouse> getWarehousesSortedByName() throws SQLException {
         // TODO Auto-generated method stub
-        return -1;
+        throw new UnsupportedOperationException("Unimplemented method 'getWarehousesSortedByName'");
     }
-
-    @Override
-    public void deleteWarehouse(int warehouseId) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public List<Warehouse> getAllWarehouse() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Warehouse getWarehouseById(int warehouseId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void updateWarehouse(Warehouse warehouse) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public List<Warehouse> getAllWarehouses() {
-        // TODO Auto-generated method stub
-        return new ArrayList<>();
-    }
-
-    @Override
-    public List<Warehouse> getWarehousesSortedByCapacity() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Warehouse> getWarehouseBySupplier(int supplierId) {
-       return new ArrayList<>();
-    }
-    
-
 }
