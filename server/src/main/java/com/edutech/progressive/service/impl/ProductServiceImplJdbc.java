@@ -1,44 +1,44 @@
 package com.edutech.progressive.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.edutech.progressive.dao.ProductDAO;
 import com.edutech.progressive.entity.Product;
+import com.edutech.progressive.service.ProductService;
 
-public class ProductServiceImplJdbc implements ProductDAO  {
+import java.sql.SQLException;
+import java.util.List;
 
-    @Override
-    public int addProduct(Product product) {
-        // TODO Auto-generated method stub
-        return 0;
+public class ProductServiceImplJdbc implements ProductService {
+
+    private ProductDAO productDAO;
+
+    public ProductServiceImplJdbc(ProductDAO productDAO) {
+        this.productDAO = productDAO;
     }
 
     @Override
-    public void deleteProduct(int productId) {
-        // TODO Auto-generated method stub
-        
+    public List<Product> getAllProducts() throws SQLException {
+        return productDAO.getAllProducts();
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        // TODO Auto-generated method stub
-        return null;
+    public Product getProductById(int productId) throws SQLException {
+        return productDAO.getProductById(productId);
     }
 
     @Override
-    public Product getProductById(int productId) {
-        // TODO Auto-generated method stub
-        return null;
+    public int addProduct(Product product) throws SQLException {
+        int id = productDAO.addProduct(product);
+        product.setProductId(id); // THIS is critical
+        return id;
     }
 
     @Override
-    public void updateProduct(Product product) {
-        // TODO Auto-generated method stub
-        
+    public void updateProduct(Product product) throws SQLException {
+        productDAO.updateProduct(product);
     }
-    
-    
-    
 
+    @Override
+    public void deleteProduct(int productId) throws SQLException {
+        productDAO.deleteProduct(productId);
+    }
 }
