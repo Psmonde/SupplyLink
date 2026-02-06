@@ -71,21 +71,4 @@ public class SupplierController {
         }
     }
 
-    // ---------- ARRAYLIST ENDPOINTS ----------
-
-    // @GetMapping("/fromArrayList")
-    // public ResponseEntity<List<Supplier>> getAllSuppliersFromArrayList() {
-    //     return ResponseEntity.ok(arrayListService.getAllSuppliers());
-    // }
-
-    // @PostMapping("/toArrayList")
-    // public ResponseEntity<Integer> addSupplierToArrayList(@RequestBody Supplier supplier) {
-    //     int size = arrayListService.addSupplier(supplier);
-    //     return ResponseEntity.status(HttpStatus.CREATED).body(size);
-    // }
-
-    // @GetMapping("/fromArrayList/all")
-    // public ResponseEntity<List<Supplier>> getAllSuppliersSortedByNameFromArrayList() {
-    //     return ResponseEntity.ok(arrayListService.getAllSuppliersSortedByName());
-    // }
-}
+    
